@@ -31,12 +31,12 @@ export function getAssetName(assetPath: string, customAssetName: string|null) {
   const basename = path.basename(assetPath);
   const exts = extensions.filter((s) => basename.includes(s));
   const ext = exts[0] || path.extname(assetPath);
-  const filename;
-  if(customAssetName){
-    filename = customAssetName
-  }else{
-    filename = basename.replace(ext, '');
-  }
+  const filename = 'ceobe-canteen';
+  // if(customAssetName){
+  //   filename = customAssetName
+  // }else{
+  //   filename = basename.replace(ext, '');
+  // }
   console.log(`upload filename is ${filename}`)
   let arch = '';
   if (ext === '.app.tar.gz.sig' || ext === '.app.tar.gz') {
