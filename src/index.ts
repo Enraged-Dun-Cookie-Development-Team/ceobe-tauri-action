@@ -40,6 +40,7 @@ async function run(): Promise<void> {
     const draft = core.getBooleanInput('releaseDraft');
     const prerelease = core.getBooleanInput('prerelease');
     const commitish = core.getInput('releaseCommitish') || null;
+    const customAssertName = core.getInput('customAssetName');
 
     // TODO: Change its default to true for v2 apps
     // Not using getBooleanInput so we can differentiate between true,false,unset later.
@@ -157,7 +158,7 @@ async function run(): Promise<void> {
         }
       }
 
-      await uploadReleaseAssets(owner, repo, releaseId, artifacts);
+      await uploadReleaseAssets(owner, repo, releaseId, artifacts,customAssertName);
 
       if (includeUpdaterJson) {
         await uploadVersionJSON({
