@@ -27,11 +27,16 @@ export const extensions = [
 ];
 
 /*** helper functions ***/
-export function getAssetName(assetPath: string) {
+export function getAssetName(assetPath: string, customAssetName: string|null) {
   const basename = path.basename(assetPath);
   const exts = extensions.filter((s) => basename.includes(s));
   const ext = exts[0] || path.extname(assetPath);
-  const filename = basename.replace(ext, '');
+  const filename;
+  if(customAssetName){
+    filename = customAssetName
+  }else{
+    filename = basename.replace(ext, '');
+  }
 
   let arch = '';
   if (ext === '.app.tar.gz.sig' || ext === '.app.tar.gz') {
