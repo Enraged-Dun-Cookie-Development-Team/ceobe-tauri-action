@@ -158,7 +158,7 @@ async function run(): Promise<void> {
         }
       }
 
-      await uploadReleaseAssets(owner, repo, releaseId, artifacts,customAssertName);
+      await uploadReleaseAssets(owner, repo, releaseId, artifacts, customAssertName);
 
       if (includeUpdaterJson) {
         await uploadVersionJSON({
