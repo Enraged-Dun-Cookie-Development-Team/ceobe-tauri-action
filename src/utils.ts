@@ -37,7 +37,7 @@ export function getAssetName(assetPath: string, customAssetName: string|null) {
   }else{
     filename = basename.replace(ext, '');
   }
-
+  console.log(`upload filename is ${filename}`)
   let arch = '';
   if (ext === '.app.tar.gz.sig' || ext === '.app.tar.gz') {
     const os_arch = process.arch === 'arm64' ? '_aarch64' : '_x64';
