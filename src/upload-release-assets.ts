@@ -1,5 +1,5 @@
 import fs from 'fs';
-
+import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
 
 import { getAssetName } from './utils';
@@ -51,9 +51,14 @@ export async function uploadAssets(
 
     console.log(`Uploading ${assetName}...`);
 
+    const customAssetName = getInput('customAssetName');
+    console.log(`customAssetName: ${customAssetName}`);
+    const uploadAssetName = customAssetName || assetName;
+    console.log(`uploadAssetName: ${uploadAssetName}`);
+
     await github.rest.repos.uploadReleaseAsset({
       headers,
-      name: assetName,
+      name: uploadAssetName,
       // https://github.com/tauri-apps/tauri-action/pull/45
       // @ts-ignore error TS2322: Type 'Buffer' is not assignable to type 'string'.
       data: fs.readFileSync(asset.path),
